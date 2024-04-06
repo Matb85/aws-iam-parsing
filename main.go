@@ -1,7 +1,7 @@
 package main
 
-
+import "fmt"
 
 func main (){
-	println("Hello from template!")
+	fmt.Println("Hello from template")
 }
