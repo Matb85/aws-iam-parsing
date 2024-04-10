@@ -63,9 +63,8 @@ func VerifyPolicyJSON(data []byte) bool {
 
 	var statements []types.Statement = p.PolicyDocument.Statements.Values
 	containsAsterisk := false
-	for i, s := range statements {
+	for _, s := range statements {
 		// Validate the Statement struct
-		fmt.Println(i)
 		err = validate.Struct(s)
 		if err != nil {
 			fmt.Println(err)
