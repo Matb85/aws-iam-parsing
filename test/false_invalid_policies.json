@@ -1,0 +1,49 @@
+[
+  {
+    "Id": "MyAccountOnlyNotPrincipal",
+    "Version": "2012-10-17",
+    "Statement": null
+  },
+  {
+    "Id": "PutObjPolicy",
+    "Statement": [{}],
+    "Version": "2012-10-17"
+  },
+  {
+    "Id": "PutObjPolicy",
+    "Statement": [
+      {
+        "Action": "s3:PutObject",
+        "Condition": {
+          "ArnNotEqualsIfExists": {
+            "s3:x-amz-server-side-encryption-aws-kms-key-id": "arn:aws:kms:us-east-2:111122223333:key/01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        "Principal": "*",
+        "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
+        "Sid": "DenyObjectsThatAreNotSSEKMSWithSpecificKey"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  {
+    "Statement": [
+      {
+        "Action": ["s3:PutObject", "s3:PutObjectAcl"],
+        "Condition": {
+          "StringEquals": {
+            "s3:x-amz-acl": ["public-read"]
+          }
+        },
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": ["arn:aws:iam::111122223333:root", "arn:aws:iam::444455556666:root"]
+        },
+        "Sid": "AddPublicReadCannedAcl"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+
+  {}
+]

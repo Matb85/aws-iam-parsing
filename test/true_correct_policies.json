@@ -1,0 +1,71 @@
+[
+  {
+    "Id": "MyAccountOnlyNotAction",
+    "Statement": [
+      {
+        "Sid": "AllowAccessToResourcesInSpecificAccountsAndSpecificService1",
+        "Effect": "Deny",
+        "NotAction": ["iam:GetPolicy", "iam:GetPolicyVersion", "iam:ListEntitiesForPolicy", "iam:ListPolicies"],
+        "Resource": "*",
+        "Condition": {
+          "StringNotEquals": {
+            "aws:ResourceAccount": ["111122223333"]
+          }
+        }
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "AllowUsersToPerformUserActions",
+        "Effect": "Allow",
+        "Action": [
+          "iam:ListPolicies",
+          "iam:GetPolicy",
+          "iam:UpdateUser",
+          "iam:AttachUserPolicy",
+          "iam:ListEntitiesForPolicy",
+          "iam:DeleteUserPolicy",
+          "iam:DeleteUser",
+          "iam:ListUserPolicies",
+          "iam:CreateUser",
+          "iam:RemoveUserFromGroup",
+          "iam:AddUserToGroup",
+          "iam:GetUserPolicy",
+          "iam:ListGroupsForUser",
+          "iam:PutUserPolicy",
+          "iam:ListAttachedUserPolicies",
+          "iam:ListUsers",
+          "iam:GetUser",
+          "iam:DetachUserPolicy"
+        ],
+        "Resource": "*"
+      }
+    ]
+  },
+  {
+    "Version": "2012-10-17",
+    "Statement": {
+      "Effect": "Allow",
+      "Action": "iam:*",
+      "Resource": "*"
+    }
+  },
+  {
+    "PolicyName": "root",
+    "PolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "IamListAccess",
+          "Effect": "Allow",
+          "Action": ["iam:ListRoles", "iam:ListUsers"],
+          "Resource": "*"
+        }
+      ]
+    }
+  }
+]
