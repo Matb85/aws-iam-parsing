@@ -10,7 +10,7 @@ import (
 
 // Statement is a single statement in a policy document.
 type Statement struct {
-	Action       *StringOrSlice                        `json:"Action,omitempty" validate:"required"`
+	Action       *StringOrSlice                        `json:"Action,omitempty"`
 	Condition    map[string]map[string]*ConditionValue `json:"Condition,omitempty"`
 	Effect       string                                `json:"Effect" validate:"required"`
 	NotAction    *StringOrSlice                        `json:"NotAction,omitempty"`
