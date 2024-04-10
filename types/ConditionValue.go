@@ -6,8 +6,8 @@ import (
 	"matb85/remitly-home-assignment/utils"
 )
 
-// ConditionValue is a type that can hold an indivual or slice of string, bool or float64.
-// When unarshalling JSON, it will preserve whether the original value was
+// ConditionValue is a type that can hold an individual or slice of string, bool or float64.
+// When unmarshalling JSON, it will preserve whether the original value was
 // singular or a slice.
 type ConditionValue struct {
 	StrValues  []string
